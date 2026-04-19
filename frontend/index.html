@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI & DS Student — Annasaheb Dange College of Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <a href="#" class="nav-logo">Gaytri<span>.</span>Magar</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#learning">Journey</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about"    onclick="toggleMenu()">About</a>
+    <a href="#skills"   onclick="toggleMenu()">Skills</a>
+    <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#learning" onclick="toggleMenu()">Journey</a>
+    <a href="#contact"  onclick="toggleMenu()">Contact</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <div class="hero-tag">AI &amp; DS Student · Open to internships &amp; opportunities</div>
+      <h1>
+        AI &amp; Data Science<br>
+        <span class="line2">Student &amp; Builder</span><br>
+        <span class="line3">Learning every day.</span>
+      </h1>
+      <p class="hero-desc">
+        I'm an AI &amp; Data Science student at Annasaheb Dange College of Engineering and Technology, Ashta. Passionate about Artificial Intelligence and building real-world solutions — actively learning backend and working toward becoming a confident full stack developer.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">See My Projects →</a>
+        <a href="#contact"  class="btn-secondary">Say Hello</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">AI&amp;DS</div><div class="stat-label">Student</div></div>
+        <div><div class="stat-num">3+</div><div class="stat-label">Projects Built</div></div>
+        <div><div class="stat-num">∞</div><div class="stat-label">Curiosity</div></div>
+        <div><div class="stat-num">0→1</div><div class="stat-label">Always Growing</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-card">
+          <div class="about-initial">AI</div>
+          <div class="about-name">Your Name</div>
+          <div class="about-role">AI &amp; Data Science Student · Builder</div>
+          <ul class="about-details">
+            <li><span>📍</span><span>Ashta, Maharashtra, India</span></li>
+            <li><span>📧</span><span>magargaytri407@gmail.com</span></li>
+            <li><span>🎓</span><span>B.Tech AI &amp; Data Science — ADCET, Ashta</span></li>
+            <li><span>📅</span><span>Expected Grad: 2027/2028</span></li>
+            <li><span>🌐</span><span>English, Marathi,Hindi</span></li>
+          </ul>
+          <div class="about-badges">
+            <span class="badge">Python</span>
+            <span class="badge">HTML,CSS,JS</span>
+            <span class="badge">C++</span>
+            <span class="badge">MySQL</span>
+            <span class="badge">MongoDB</span>
+            <span class="badge">PostgreSQL (Learning)</span>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="status-row">
+            <span class="status-dot strong"></span>
+            <span><strong>Strong:</strong> MySQL &amp; MongoDB</span>
+          </div>
+          <div class="status-row">
+            <span class="status-dot learning"></span>
+            <span><strong>Learning:</strong> PostgreSQL</span>
+          </div>
+          <div class="status-row">
+            <span class="status-dot exploring"></span>
+            <span><strong>Building:</strong> Fraud Detection &amp; Women Safety App</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">A student who builds real things</h2>
+        <p>Hey! I'm an AI &amp; Data Science student at Annasaheb Dange College of Engineering and Technology, Ashta.
+           I'm passionate about machine learning, data analysis, and building intelligent systems that solve real-world problems.</p>
+        <p>On the database side, I've already learned MySQL and MongoDB — and I'm currently diving into PostgreSQL, exploring its powerful features for data-heavy applications. I love working with data at every layer.</p>
+        <p>I'm currently working on two exciting projects: a <strong style="color:var(--accent)">Fraud Detection system for banking</strong> (almost complete!) and a <strong style="color:var(--accent2)">Women Safety App</strong> — both built to create meaningful impact. I'm actively looking for internships where I can grow and contribute.</p>
+        <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="#contact" class="btn-primary">Download CV →</a>
+          <a href="#projects" class="btn-secondary">See Projects →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="skills-header">
+      <div class="section-label">What I Know</div>
+      <h2 class="section-title">Skills &amp; Tech Stack</h2>
+      <p class="section-sub">Honest about what I know — and excited about what I'm learning.</p>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card featured">
+        <div class="skill-level-badge strong">Strong ✓</div>
+        <div class="skill-card-icon yellow">🤖</div>
+        <h3>AI &amp; Machine Learning <span class="skill-star">★ My Strength</span></h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Data Preprocessing</span>
+          <span class="skill-tag">Classification Models</span>
+          <span class="skill-tag">Jupyter Notebook</span>
+          <span class="skill-tag">Git &amp; GitHub</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-level-badge strong">Learned ✓</div>
+        <div class="skill-card-icon blue">🗄️</div>
+        <h3>Databases</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL ✓</span>
+          <span class="skill-tag">MongoDB ✓</span>
+          <span class="skill-tag">PostgreSQL 🚀</span>
+          <span class="skill-tag">SQL Queries</span>
+          <span class="skill-tag">Schema Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-level-badge learning">Learning 🚀</div>
+        <div class="skill-card-icon teal">📊</div>
+        <h3>Data Science &amp; Analytics</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Feature Engineering</span>
+          <span class="skill-tag">EDA</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-level-badge comfortable">Comfortable ✓</div>
+        <div class="skill-card-icon pink">🛠️</div>
+        <h3>Tools &amp; Extras</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Google Colab</span>
+          <span class="skill-tag">Jupyter</span>
+          <span class="skill-tag">Python Libraries</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="projects-inner">
+      <div class="projects-header">
+        <div>
+          <div class="section-label">My Work</div>
+          <h2 class="section-title">Projects I've Built</h2>
+          <p class="section-sub" style="margin-top:0.5rem;">Real projects I built while learning — not just tutorials.</p>
+        </div>
+        <a href="https://github.com/" target="_blank" class="btn-secondary">GitHub Profile →</a>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-thumb p1">
+            <span>🏦</span>
+            <span class="project-thumb-label">AI / ML</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Fraud Detection in Banking <span style="font-size:0.7rem;color:var(--accent3);background:rgba(52,211,153,0.12);padding:0.15rem 0.5rem;border-radius:1rem;margin-left:0.4rem;">Almost Done ✓</span></div>
+            <p class="project-desc">A machine learning system that detects fraudulent transactions in banking data. Uses classification models trained on real-world patterns to flag suspicious activity with high accuracy.</p>
+            <div class="project-stack">
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">Scikit-learn</span>
+              <span class="stack-pill">Pandas</span>
+              <span class="stack-pill">ML Classification</span>
+              <span class="stack-pill">Data Analysis</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link ghost">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb p3">
+            <span>🛡️</span>
+            <span class="project-thumb-label">Mobile / Safety</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Women Safety App</div>
+            <p class="project-desc">A safety application designed to help women in emergency situations — with features like SOS alerts, location sharing, and quick access to emergency contacts. Built to make a real difference.</p>
+            <div class="project-stack">
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">Location API</span>
+              <span class="stack-pill">Alert System</span>
+              <span class="stack-pill">Database</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link ghost">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb p2">
+            <span>🗄️</span>
+            <span class="project-thumb-label">Database</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Portfolio Website (This!)</div>
+            <p class="project-desc">The very site you're looking at — built from scratch with HTML, CSS, and JavaScript. Showcasing my journey from databases to AI &amp; Data Science projects.</p>
+            <div class="project-stack">
+              <span class="stack-pill">HTML5</span>
+              <span class="stack-pill">CSS3</span>
+              <span class="stack-pill">JavaScript</span>
+              <span class="stack-pill">Responsive</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link ghost">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LEARNING JOURNEY ── -->
+  <section id="learning">
+    <div class="exp-header">
+      <div class="section-label">My Journey</div>
+      <h2 class="section-title">Learning &amp; Education</h2>
+      <p class="section-sub">No work experience yet — but here's my honest, real journey as a developer.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2025 — Present</div>
+        <div class="timeline-title">Learning PostgreSQL</div>
+        <div class="timeline-company">Self-taught · Currently In Progress</div>
+        <p class="timeline-desc">Currently mastering PostgreSQL — exploring advanced SQL, indexing, joins, and relational database design. Adding it to my existing knowledge of MySQL and MongoDB to become well-rounded in both SQL and NoSQL databases.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2024 — 2025</div>
+        <div class="timeline-title">Building Real AI &amp; Safety Projects</div>
+        <div class="timeline-company">ADCET, Ashta · Personal Projects</div>
+        <p class="timeline-desc">Working on two major projects: a Fraud Detection system in banking using machine learning classifiers, and a Women Safety App with SOS alerts and location features. Both near completion and built to solve real-world problems.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2023 — 2024</div>
+        <div class="timeline-title">Mastered MySQL &amp; MongoDB</div>
+        <div class="timeline-company">Self-taught · ADCET Coursework</div>
+        <p class="timeline-desc">Learned relational databases deeply through MySQL — writing complex queries, designing schemas, and understanding normalization. Then picked up MongoDB for NoSQL document-based storage, understanding when each type of database fits best.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2022 — Present</div>
+        <div class="timeline-title">B.Tech AI &amp; Data Science</div>
+        <div class="timeline-company">Annasaheb Dange College of Engineering &amp; Technology · Ashta</div>
+        <p class="timeline-desc">Studying core AI &amp; DS fundamentals — Machine Learning, Data Structures, Statistics, DBMS, and Python programming. Applying everything I learn to real projects, not just assignments. This journey started my love for data and intelligent systems.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Let's connect!</h2>
+        <p>I'm actively looking for <strong style="color:var(--accent)">AI &amp; Data Science internships</strong> and <strong style="color:var(--accent)">entry-level opportunities</strong>. If you're looking for a motivated student who builds real projects and learns fast — I'd love to talk!</p>
+        <div class="open-to-box">
+          <div class="open-to-title">✅ Open To</div>
+          <ul class="open-to-list">
+            <li>💼 AI / ML / Data Science Internships</li>
+            <li>🤝 Freelance &amp; Small Projects</li>
+            <li>🎓 Campus Placement Opportunities</li>
+            <li>👥 Collaboration &amp; Open Source</li>
+          </ul>
+        </div>
+        <div class="contact-socials">
+          <a href="mailto:you@email.com" class="social-link">
+            <div class="social-icon">✉️</div> you@email.com
+          </a>
+          <a href="#" class="social-link">
+            <div class="social-icon">💼</div> linkedin.com/in/yourname
+          </a>
+          <a href="#" class="social-link">
+            <div class="social-icon">🐙</div> github.com/yourname
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="contactName" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="contactEmail" placeholder="john@company.com">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" id="contactSubject" placeholder="Internship Opportunity / Project Collab">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="contactMessage" placeholder="Tell me about the opportunity..."></textarea>
+        </div>
+        <button class="form-submit" id="submitBtn" onclick="handleSubmit()">Send Message →</button>
+        <div id="formMsg" style="margin-top:0.75rem;font-size:0.9rem;display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <a href="#" class="footer-logo">dev<span>.</span>student</a>
+    <p class="footer-copy">© 2025 · Built from scratch with HTML, CSS &amp; JS ❤️</p>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <a href="#home" class="back-top" id="backTop">↑</a>
+  <script src="script.js"></script>
+</body>
+</html>

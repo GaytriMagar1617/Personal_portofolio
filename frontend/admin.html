@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --bg:      #0b0f1a;
+      --surface: #111827;
+      --surface2:#1c2333;
+      --border:  #1e2d45;
+      --accent:  #4f9eff;
+      --accent2: #a78bfa;
+      --accent3: #34d399;
+      --red:     #f87171;
+      --text:    #e8edf5;
+      --muted:   #7a8fa6;
+      --font-head:'Syne', sans-serif;
+      --font-body:'DM Sans', sans-serif;
+    }
+    body { background:var(--bg); color:var(--text); font-family:var(--font-body); min-height:100vh; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background:var(--surface);
+      border-bottom:1px solid var(--border);
+      padding:1rem 2rem;
+      display:flex; align-items:center; justify-content:space-between;
+      position:sticky; top:0; z-index:50;
+    }
+    .topbar-logo { font-family:var(--font-head); font-weight:800; font-size:1.1rem; }
+    .topbar-logo span { color:var(--accent); }
+    .topbar-back { color:var(--muted); text-decoration:none; font-size:0.85rem; }
+    .topbar-back:hover { color:var(--accent); }
+
+    /* ── LAYOUT ── */
+    .layout { display:grid; grid-template-columns:220px 1fr; min-height:calc(100vh - 57px); }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      background:var(--surface);
+      border-right:1px solid var(--border);
+      padding:1.5rem 1rem;
+      display:flex; flex-direction:column; gap:0.4rem;
+    }
+    .sidebar-label { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin:1rem 0.5rem 0.4rem; }
+    .sidebar-btn {
+      background:none; border:none; cursor:pointer;
+      color:var(--muted); font-family:var(--font-body); font-size:0.9rem;
+      padding:0.6rem 0.9rem; border-radius:8px; text-align:left;
+      display:flex; align-items:center; gap:0.6rem; transition:all 0.2s;
+      width:100%;
+    }
+    .sidebar-btn:hover { background:rgba(79,158,255,0.08); color:var(--accent); }
+    .sidebar-btn.active { background:rgba(79,158,255,0.12); color:var(--accent); font-weight:600; }
+
+    /* ── MAIN ── */
+    main { padding:2rem; overflow-y:auto; }
+
+    /* ── STATS ROW ── */
+    .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin-bottom:2rem; }
+    .stat-box {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:12px; padding:1.25rem 1.5rem;
+    }
+    .stat-box-num { font-family:var(--font-head); font-size:2rem; font-weight:800; color:var(--accent); }
+    .stat-box-label { font-size:0.8rem; color:var(--muted); margin-top:0.2rem; }
+
+    /* ── PANELS ── */
+    .panel { display:none; }
+    .panel.active { display:block; }
+
+    .panel-title { font-family:var(--font-head); font-size:1.4rem; font-weight:700; margin-bottom:1.5rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    table { width:100%; border-collapse:collapse; }
+    th {
+      background:var(--surface2); color:var(--muted);
+      font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+      padding:0.75rem 1rem; text-align:left;
+    }
+    td { padding:0.85rem 1rem; font-size:0.88rem; border-top:1px solid var(--border); vertical-align:top; }
+    tr:hover td { background:rgba(79,158,255,0.03); }
+    .td-muted { color:var(--muted); font-size:0.8rem; }
+    .del-btn {
+      background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.3);
+      color:var(--red); border-radius:6px; padding:0.3rem 0.7rem;
+      font-size:0.75rem; cursor:pointer; font-family:var(--font-body);
+      transition:background 0.2s;
+    }
+    .del-btn:hover { background:rgba(248,113,113,0.25); }
+
+    /* ── ADD PROJECT FORM ── */
+    .add-form {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:12px; padding:1.5rem; margin-bottom:2rem;
+    }
+    .add-form h3 { font-family:var(--font-head); font-size:1rem; font-weight:700; margin-bottom:1rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .fg { display:flex; flex-direction:column; gap:0.35rem; margin-bottom:0.85rem; }
+    .fg label { font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); }
+    .fg input, .fg textarea {
+      background:var(--bg); border:1px solid var(--border); border-radius:7px;
+      padding:0.65rem 0.9rem; color:var(--text); font-family:var(--font-body); font-size:0.9rem; outline:none;
+    }
+    .fg input:focus, .fg textarea:focus { border-color:rgba(79,158,255,0.5); }
+    .fg textarea { min-height:80px; resize:vertical; }
+    .add-btn {
+      background:var(--accent); color:#fff; border:none; border-radius:2rem;
+      padding:0.75rem 1.75rem; font-weight:700; font-size:0.9rem;
+      cursor:pointer; font-family:var(--font-body); transition:transform 0.2s;
+    }
+    .add-btn:hover { transform:translateY(-2px); }
+
+    /* ── BADGE ── */
+    .badge-pill {
+      display:inline-block; background:var(--surface2); border:1px solid var(--border);
+      color:var(--muted); font-size:0.7rem; padding:0.15rem 0.5rem; border-radius:3px; margin:1px;
+    }
+
+    /* ── EMPTY ── */
+    .empty { color:var(--muted); font-size:0.9rem; padding:2rem; text-align:center; }
+
+    /* ── LOADING ── */
+    .loading { color:var(--muted); font-size:0.85rem; padding:1rem; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-logo">admin<span>.</span>panel</div>
+    <a href="/" class="topbar-back">← Back to Portfolio</a>
+  </div>
+
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-label">Dashboard</div>
+      <button class="sidebar-btn active" onclick="showPanel('overview')">📊 Overview</button>
+      <div class="sidebar-label">Manage</div>
+      <button class="sidebar-btn" onclick="showPanel('messages')">✉️ Messages</button>
+      <button class="sidebar-btn" onclick="showPanel('projects')">💼 Projects</button>
+      <button class="sidebar-btn" onclick="showPanel('visitors')">👁️ Visitors</button>
+    </div>
+
+    <!-- MAIN -->
+    <main>
+
+      <!-- OVERVIEW PANEL -->
+      <div class="panel active" id="panel-overview">
+        <div class="panel-title">📊 Dashboard Overview</div>
+        <div class="stats-row" id="statsRow">
+          <div class="loading">Loading stats...</div>
+        </div>
+      </div>
+
+      <!-- MESSAGES PANEL -->
+      <div class="panel" id="panel-messages">
+        <div class="panel-title">✉️ Contact Messages</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Date</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="msgTableBody">
+              <tr><td colspan="7" class="empty">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PROJECTS PANEL -->
+      <div class="panel" id="panel-projects">
+        <div class="panel-title">💼 Projects</div>
+
+        <!-- Add Project Form -->
+        <div class="add-form">
+          <h3>➕ Add New Project</h3>
+          <div class="form-row">
+            <div class="fg">
+              <label>Title</label>
+              <input id="pTitle" placeholder="Project name">
+            </div>
+            <div class="fg">
+              <label>Emoji</label>
+              <input id="pEmoji" placeholder="🤖" maxlength="4">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Description</label>
+            <textarea id="pDesc" placeholder="What does this project do?"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="fg">
+              <label>Stack (comma separated)</label>
+              <input id="pStack" placeholder="Python, Flask, MySQL">
+            </div>
+            <div class="fg">
+              <label>Label / Category</label>
+              <input id="pLabel" placeholder="AI / ML">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="fg">
+              <label>GitHub URL</label>
+              <input id="pGithub" placeholder="https://github.com/...">
+            </div>
+            <div class="fg">
+              <label>Live URL (optional)</label>
+              <input id="pLive" placeholder="https://...">
+            </div>
+          </div>
+          <button class="add-btn" onclick="addProject()">Add Project →</button>
+          <span id="addMsg" style="margin-left:1rem;font-size:0.85rem;color:var(--accent3);"></span>
+        </div>
+
+        <!-- Projects Table -->
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Project</th><th>Stack</th><th>Links</th><th>Action</th></tr>
+            </thead>
+            <tbody id="projTableBody">
+              <tr><td colspan="5" class="empty">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VISITORS PANEL -->
+      <div class="panel" id="panel-visitors">
+        <div class="panel-title">👁️ Visitor Stats</div>
+        <div class="stats-row" id="visitorStats">
+          <div class="loading">Loading...</div>
+        </div>
+        <div class="panel-title" style="margin-top:2rem;font-size:1.1rem;">Recent Visitors</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>IP Address</th><th>Page</th><th>Visited At</th></tr>
+            </thead>
+            <tbody id="visitorTable">
+              <tr><td colspan="3" class="empty">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    const API = 'http://localhost:5000/api';
+
+    // ── PANEL SWITCHING ──
+    function showPanel(name) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`panel-${name}`).classList.add('active');
+      event.currentTarget.classList.add('active');
+
+      if (name === 'overview')  loadOverview();
+      if (name === 'messages')  loadMessages();
+      if (name === 'projects')  loadProjects();
+      if (name === 'visitors')  loadVisitors();
+    }
+
+    // ── OVERVIEW ──
+    async function loadOverview() {
+      const [msgRes, visRes, projRes] = await Promise.all([
+        fetch(`${API}/contact`).then(r => r.json()),
+        fetch(`${API}/visitors`).then(r => r.json()),
+        fetch(`${API}/projects`).then(r => r.json()),
+      ]);
+
+      const el = document.getElementById('statsRow');
+      el.innerHTML = `
+        <div class="stat-box">
+          <div class="stat-box-num">${visRes.data.total_visits}</div>
+          <div class="stat-box-label">Total Visits</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">${visRes.data.today_visits}</div>
+          <div class="stat-box-label">Visits Today</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">${msgRes.data.length}</div>
+          <div class="stat-box-label">Messages</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">${projRes.data.length}</div>
+          <div class="stat-box-label">Projects</div>
+        </div>
+      `;
+    }
+
+    // ── MESSAGES ──
+    async function loadMessages() {
+      const res  = await fetch(`${API}/contact`);
+      const data = await res.json();
+      const tbody = document.getElementById('msgTableBody');
+
+      if (!data.data.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="empty">No messages yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.data.map(m => `
+        <tr>
+          <td class="td-muted">${m.id}</td>
+          <td><strong>${m.name}</strong></td>
+          <td class="td-muted">${m.email}</td>
+          <td class="td-muted">${m.subject || '—'}</td>
+          <td style="max-width:260px;">${m.message}</td>
+          <td class="td-muted">${m.created_at.slice(0,16)}</td>
+          <td><button class="del-btn" onclick="deleteMessage(${m.id})">Delete</button></td>
+        </tr>
+      `).join('');
+    }
+
+    async function deleteMessage(id) {
+      if (!confirm('Delete this message?')) return;
+      await fetch(`${API}/contact/${id}`, { method: 'DELETE' });
+      loadMessages();
+    }
+
+    // ── PROJECTS ──
+    async function loadProjects() {
+      const res  = await fetch(`${API}/projects`);
+      const data = await res.json();
+      const tbody = document.getElementById('projTableBody');
+
+      if (!data.data.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="empty">No projects yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.data.map(p => `
+        <tr>
+          <td class="td-muted">${p.id}</td>
+          <td>
+            <div style="font-weight:600;">${p.emoji} ${p.title}</div>
+            <div class="td-muted" style="font-size:0.8rem;margin-top:0.2rem;">${p.description.slice(0,80)}...</div>
+          </td>
+          <td>${p.stack.map(s => `<span class="badge-pill">${s}</span>`).join('')}</td>
+          <td>
+            ${p.github_url !== '#' ? `<a href="${p.github_url}" target="_blank" style="color:var(--accent);font-size:0.8rem;">GitHub ↗</a>` : '<span class="td-muted">—</span>'}
+          </td>
+          <td><button class="del-btn" onclick="deleteProject(${p.id})">Delete</button></td>
+        </tr>
+      `).join('');
+    }
+
+    async function addProject() {
+      const body = {
+        title:       document.getElementById('pTitle').value.trim(),
+        description: document.getElementById('pDesc').value.trim(),
+        stack:       document.getElementById('pStack').value.trim(),
+        emoji:       document.getElementById('pEmoji').value.trim() || '💻',
+        label:       document.getElementById('pLabel').value.trim() || 'Project',
+        github_url:  document.getElementById('pGithub').value.trim() || '#',
+        live_url:    document.getElementById('pLive').value.trim() || '',
+      };
+
+      if (!body.title || !body.description) {
+        document.getElementById('addMsg').textContent = '⚠️ Title and description are required.';
+        document.getElementById('addMsg').style.color = '#f87171';
+        return;
+      }
+
+      const res  = await fetch(`${API}/projects`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        document.getElementById('addMsg').textContent = '✅ Project added!';
+        document.getElementById('addMsg').style.color = 'var(--accent3)';
+        // Clear form
+        ['pTitle','pDesc','pStack','pEmoji','pLabel','pGithub','pLive'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+        loadProjects();
+        setTimeout(() => document.getElementById('addMsg').textContent = '', 3000);
+      }
+    }
+
+    async function deleteProject(id) {
+      if (!confirm('Delete this project?')) return;
+      await fetch(`${API}/projects/${id}`, { method: 'DELETE' });
+      loadProjects();
+    }
+
+    // ── VISITORS ──
+    async function loadVisitors() {
+      const res  = await fetch(`${API}/visitors`);
+      const data = await res.json();
+      const stats = data.data;
+
+      document.getElementById('visitorStats').innerHTML = `
+        <div class="stat-box">
+          <div class="stat-box-num">${stats.total_visits}</div>
+          <div class="stat-box-label">Total Visits</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-num">${stats.today_visits}</div>
+          <div class="stat-box-label">Today</div>
+        </div>
+      `;
+
+      const tbody = document.getElementById('visitorTable');
+      if (!stats.recent.length) {
+        tbody.innerHTML = '<tr><td colspan="3" class="empty">No visitors yet.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = stats.recent.map(v => `
+        <tr>
+          <td class="td-muted">${v.ip}</td>
+          <td>${v.page}</td>
+          <td class="td-muted">${v.visited_at.slice(0,16)}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Load overview on start
+    loadOverview();
+  </script>
+</body>
+</html>
