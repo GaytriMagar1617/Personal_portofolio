@@ -1,145 +1,52 @@
-<<<<<<< HEAD
-# 🌐 Personal Portfolio Website
+# 🚀 Portfolio Full Stack — Flask + MySQL
 
 This is my personal portfolio website showcasing my projects, skills, and experience in AI, Data Science, and Web Development.
 
-## 🚀 Live Demo
-👉 [Click here to view my portfolio](https://your-username.github.io/your-repo-name/)
-
----
-
-## 📌 Features
-- Responsive design (works on mobile & desktop)
-- Modern UI/UX
-- Project showcase section
-- Skills & technologies section
-- Contact form / social links
-
----
-
-## 🛠️ Technologies Used
-- HTML5
-- CSS3
-- JavaScript
-- Font Awesome
-
----
-
-## 📂 Project Structure
-=======
-# 🚀 Portfolio Full Stack — Flask + MySQL
-
 ## 📁 Project Structure
-
-```
 portfolio-fullstack/
-├── app.py              ← Main Flask server
-├── database.py         ← MySQL connection & table creation
-├── models.py           ← All database operations
-├── requirements.txt    ← Python packages
-├── README.md           ← This file
+├── app.py           ← Main Flask server
+├── database.py      ← MySQL connection & table creation
+├── models.py        ← All database operations
+├── requirements.txt ← Python packages
+├── README.md        ← This file
 └── frontend/
-    ├── index.html      ← Your portfolio (updated)
-    ├── style.css       ← Styles
-    ├── script.js       ← Updated JS with API calls
-    └── admin.html      ← Admin dashboard
-```
+├── index.html   ← Your portfolio
+├── style.css    ← Styles
+├── script.js    ← JS with API calls
+└── admin.html   ← Admin dashboard
 
----
 
-## ⚙️ STEP 1 — Set up MySQL
+## ⚙️ Setup Instructions
 
+### 1. Set up MySQL
 Open MySQL and run:
-
 ```sql
 CREATE DATABASE portfolio_db;
-```
+2. Configure Database
+Open app.py and update your credentials:
 
-That's it! The tables are created automatically when you run the app.
-
----
-
-## ⚙️ STEP 2 — Update your DB password in app.py
-
-Open `app.py` and change these 3 lines:
-
-```python
-app.config['MYSQL_USER']     = 'root'          # your MySQL username
-app.config['MYSQL_PASSWORD'] = 'yourpassword'  # your MySQL password
+Python
+app.config['MYSQL_USER']     = 'root'
+app.config['MYSQL_PASSWORD'] = 'yourpassword'
 app.config['MYSQL_DB']       = 'portfolio_db'
-```
-
----
-
-## ⚙️ STEP 3 — Install Python packages
-
-Open terminal in the project folder and run:
-
-```bash
+3. Install & Run
+Bash
 pip install -r requirements.txt
-```
-
----
-
-## ⚙️ STEP 4 — Run the server
-
-```bash
 python app.py
-```
+✅ Features
+Visitor Tracking: Every visit is logged (page, IP, time).
 
-You should see:
-```
- * Running on http://127.0.0.1:5000
-```
+Contact Form: Messages are saved directly to MySQL.
 
----
+Admin Panel: CRUD operations for projects and messages.
 
-## 🌐 Open in Browser
-
-| URL                          | What it does              |
-|------------------------------|---------------------------|
-| http://localhost:5000        | Your portfolio website    |
-| http://localhost:5000/admin  | Admin dashboard           |
 
 ---
 
-## ✅ Features
+### 📤 After you Save:
+Once you save the file, go to your terminal and run these **final three commands** to tell Git the "argument" is over:
 
-### Contact Form
-- Messages from your portfolio are saved to MySQL
-- View and delete messages from the admin panel
-
-### Visitor Tracking
-- Every visit is logged (page, IP, time)
-- See total visits, today's visits, recent visitors
-
-### Projects (Admin CRUD)
-- Add new projects from the admin panel
-- Delete projects
-- All stored in MySQL
-
----
-
-## 🗄️ Database Tables
-
-| Table             | What it stores              |
-|-------------------|-----------------------------|
-| contact_messages  | Form submissions             |
-| visitors          | Page visit logs              |
-| projects          | Your portfolio projects      |
-
----
-
-## 📡 API Endpoints
-
-| Method | Endpoint              | Description              |
-|--------|-----------------------|--------------------------|
-| POST   | /api/contact          | Submit contact form      |
-| GET    | /api/contact          | Get all messages (admin) |
-| DELETE | /api/contact/:id      | Delete a message         |
-| POST   | /api/visit            | Log a visitor            |
-| GET    | /api/visitors         | Get visitor stats        |
-| GET    | /api/projects         | Get all projects         |
-| POST   | /api/projects         | Add a project (admin)    |
-| DELETE | /api/projects/:id     | Delete a project         |
->>>>>>> bb9b349 (Initial commit: Flask Portfolio with MySQL)
+```powershell
+git add README.md
+git commit -m "Fix: cleaned up merge conflicts in README"
+git push origin main
